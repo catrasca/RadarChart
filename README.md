@@ -20,10 +20,11 @@ generates a radar plot to compare several series.
 generates a radar plot to compare several series.
 
 The following options can be given.
-| First Header  | Second Header |
-| ------------- | ------------- |
-| Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  |
+First Header | Second Header
+------------ | -------------
+Content from cell 1 | Content from cell 2
+Content in the first column | Content in the second column
+
 
 AxesType  "Star" or "Radar"  AxesType is an option for changing the style of the Axes. Star creates 
 
