@@ -9,7 +9,9 @@ Paclet[
     Creator -> "Diego Zviovich",
     Extensions -> 
         {
-            {"Documentation", Language -> "English", MainPage -> "ReferencePages/Symbols/RadarChart"}
+            {"Documentation", Resources ->
+			{"ReferencePages/Symbols/RadarChart"}, 
+			Language -> "English", MainPage -> "ReferencePages/Symbols/RadarChart"}
         }
 ]
 
