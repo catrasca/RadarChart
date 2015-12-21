@@ -71,6 +71,7 @@ Compare survey results.
 ##Neat Examples
 
 Analyze and compare crime statistics across states.
+
      Needs["RadarChart`"];
      states = EntityClass["AdministrativeDivision", "AllUSStatesPlusDC"];
      stateNames = First@StringSplit[#, ","] & /@ states["Name"];
@@ -95,4 +96,5 @@ Analyze and compare crime statistics across states.
                  PlotRangePadding -> Full, FrameTicks -> None, 
                  Epilog -> {Dashed, Circle[{0, 0}, 25.5]}] & /@ stateNames, 
                  UpTo[6]], ImageSize -> 600]}]]
+                 
 ![Mathematica graphics](http://i.stack.imgur.com/5Vk7j.png)
