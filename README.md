@@ -4,6 +4,19 @@ The *RadarChart* mathematica package incorporates Radar Charts (also known as Sp
 
 A detailed explanation on the use of radar charts can be found in the following [wikipedia page](https://en.wikipedia.org/wiki/Radar_chart).
 
+Thanks to [halirutan](https://github.com/halirutan) for his guidance on setting up this project. Installation Instructions are heavily based on his existing projects.
+
+---
+**Navigation**
+
+- [Detailed Usage](#-detailed-usage)
+- [Examples](#examples)
+- [Neat Examples](#-neat-examples)
+- [Installation](#-installation)
+	- [Automatic Installation for *Mathematica* 9 and above](#automatic-installation-for-mathematica-9-and-above)
+    - [Manual Installation](#manual-installation)
+---
+
 ##![doc image](http://i.stack.imgur.com/erf8e.png) Detailed Usage
     RadarChart[{y1,y2,y3,...}]
 generates a radar plot (also known as web, star, spider, cobweb or kiviat diagram) corresponding to a list of values. This type of chart is suitable for showing commonality and outliers across different variables. 
@@ -98,3 +111,60 @@ Analyze and compare crime statistics across states.
                  UpTo[6]], ImageSize -> 600]}]]
                  
 ![Mathematica graphics](http://i.stack.imgur.com/5Vk7j.png)
+
+#Installation
+
+This package should work with Mathematica >8 if not using associations or datasets. The package was developed using mathematica 10.
+The installation is simple: Copy the `RadarChart` package directory into a location where *Mathematica* can find it. Usually this is the `Applications` directory in your `$UserBaseDirectory`. Just evaluate
+
+    FileNameJoin[{$UserBaseDirectory, "Applications"}]
+
+to see it. If there is an old installation of the `RadarChart`, remove it. Please find detailed steps below.
+
+###Automatic Installation for *Mathematica* 9 and above
+
+We have set up [an installation script](https://raw.githubusercontent.com/catrasca/RadarChart/master/RadarChart/installer.m) that does all the steps, except deleting old installations, for you. If it finds an old installation, it will prompt you with the location and quit, so that you can remove the old installation. After removing the old files, just start it again and it will proceed through all the steps pointed out in the manual installation section. To start the installation script, simply call
+
+    Import["http://tinyurl.com/ntmhkca"]
+
+After this, the package should be available in your mathematica instance.
+
+###Manual Installation
+
+####Removing old Installations
+
+Old installation packages can be found by simply searching directories in your `$Path`. 
+
+    FileNames["RadarChart", $Path]
+
+Please remove old installation directories that appear after evaluating the commands above. You can use 
+
+    DeleteDirectory[dir, DeleteContents -> True]
+
+for that, but note that on Windows this might fail, because there, some files are locked when *Mathematica* is running. In this case, close *Mathematica* and do it manually using an explorer.
+
+###Downloading, Extracting and Copying the New Version
+
+The easiest way is, to download the whole repository as zip file. Use [this master.zip](https://github.com/catrasca/RadarChart/archive/master.zip) or click the *Download ZIP* on the right side on this page.
+
+After you have downloaded the file extract it. If you have no tool for this on Windows, you could use the [free 7-Zip](http://7-zip.org/). Under Mac OSX and Linux this should work out of the box.
+
+Inside the extracted directory, you will find a subdirectory `RadarChart` which has the following structure
+
+    RadarChart/
+    ├── Documentation
+    │   └── English
+    │       └── ReferencePages
+    │           └── Symbols
+    │               └── RadarChart.nb
+    ├── Kernel
+    │   └── init.m
+    ├── Installer.m
+    ├── pacletInfo.m
+    ├── RadarChart.m
+
+Copy the whole `RadarChart` directory with all its content to your `Applications` folder under your `$UserBaseDiretory`. If everything is in place proceed to the next step.
+
+###Finishing the Installation
+
+To make the package works, you can simply restart *Mathematica*.
