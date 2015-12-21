@@ -41,3 +41,58 @@ Epilog | {} | Epilog is an option for graphics functions that gives a list of gr
     ImageSize -> Medium]
     
 ![Basic Example](http://i.stack.imgur.com/Opnwp.png)    
+
+Multiple Series can be charted.
+
+     Needs["RadarChart`"]
+     RadarChart[{{1, 4, 3, 5, 2}, {2, 4, 3, 2, 1}}, Filling -> Axis, 
+         AxesLabel -> {"Sweet", "Sour", "Salty", "Bitter", "Umami"}, 
+         PlotStyle -> {Red, Blue}, ChartLegends -> {"Fernet-Cola", "Jugo"}]
+![Mathematica graphics](http://i.stack.imgur.com/zvBVd.png)   
+
+Example of a start plot.
+
+     Needs["RadarChart`"];
+     RadarChart[{{1, 4, 3, 5, 2}, {2, 4, 3, 2, 1}}, AxesType -> "Star"]
+
+![Mathematica graphics](http://i.stack.imgur.com/umecs.png)
+
+Compare survey results.
+
+     Needs["RadarChart`"];
+     RadarChart[{{3, 4, 3, 4, 2}, {4, 5, 4, 5, 3}}, 
+         AxesLabel -> {"Assets", "Reliability", "Cost Control", 
+         "Abstenteeism", "Revenue"}, 
+         ChartLegends -> {"Past Year", "Current Year"}, Filling -> Axis, 
+         PlotStyle -> {{Gray}, {Black}}, ImageSize -> Medium]
+     
+![Mathematica graphics](http://i.stack.imgur.com/WUH8c.png)
+
+##Neat Examples
+
+Analyze and compare crime statistics across states.
+     Needs["RadarChart`"];
+     states = EntityClass["AdministrativeDivision", "AllUSStatesPlusDC"];
+     stateNames = First@StringSplit[#, ","] & /@ states["Name"];
+     crimeProps = {"AggravatedAssaultRate", "BurglaryRate", 
+         "ForcibleRapeRate", "LarcenyTheftRate", 
+         "MurderNonnegligentManslaughterRate", "PropertyCrimeRate", 
+         "RobberyRate", "ViolentCrimeRate"};
+     crimeData = EntityValue[states, 
+         EntityProperty["AdministrativeDivision", #] & /@ crimeProps];
+     crimeRanking = Transpose[
+         Ordering[crimeData[[All, #]]] & /@ Range@Length@crimeProps];
+     ds = Dataset[
+         AssociationThread[stateNames, 
+             AssociationThread[crimeProps, #] & /@ crimeRanking]];
+     GraphicsRow[{RadarChart[ds["Georgia"], AxesType -> "Star", 
+         PlotLabel -> Style["Georgia", Bold, Large], 
+         Epilog -> {Dashed, Circle[{0, 0}, 25.5]}, ImageSize -> Large], 
+         GraphicsGrid[
+             Partition[
+                 RadarChart[ds[#], PlotLabel -> #, AxesLabel -> None, 
+                 PlotRange -> {0, 50}, AxesType -> "Star",
+                 PlotRangePadding -> Full, FrameTicks -> None, 
+                 Epilog -> {Dashed, Circle[{0, 0}, 25.5]}] & /@ stateNames, 
+                 UpTo[6]], ImageSize -> 600]}]]
+![Mathematica graphics](http://i.stack.imgur.com/5Vk7j.png)
