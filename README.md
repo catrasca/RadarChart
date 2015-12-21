@@ -15,6 +15,7 @@ Thanks to [halirutan](https://github.com/halirutan) for his guidance on setting 
 - [Installation](#installation)
 	- [Automatic Installation for *Mathematica* 9 and above](#automatic-installation-for-mathematica-9-and-above)
 	- [Manual Installation](#manual-installation)
+- [Contact](#-contact) 
 	
 ---
 
@@ -169,3 +170,7 @@ Copy the whole `RadarChart` directory with all its content to your `Applications
 ###Finishing the Installation
 
 To make the package works, you can simply restart *Mathematica*.
+
+##![contact team](http://i.stack.imgur.com/tCbmW.png) Contact
+
+If you find bugs or have any other questions, please [create a new issue](https://github.com/catrasca/RadarChart/issues) in the bug-tracker. 
