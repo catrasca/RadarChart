@@ -19,18 +19,25 @@ generates a radar plot to compare several series.
      RadarChart[dataset]
 generates a radar plot to compare several series.
 
-The following options can be given.
+The following table lists some of the most important options available.
 
+Options | Values |Description
+------------ | ------------- | -------------
+AxesType | "Star" or "Radar" | AxesType is an option for changing the style of the Axes. Star creates a Star Plot, while "Radar" a Radar Plot
+FrameTicks    | Automatic          |Frameticks can be defined by the user. Example Frameticks->{0,2,4,6,8,10} 
+PlotStyle | Automatic | PlotStyle is an option for plotting and related functions that specifies styles in which objects are to be drawn. 
+Filling | None | defines what filling to add below lines.
+ChartLegends | None or Automatic or list | ChartLegends is an option for charting functions that specifies what legends should be used for chart elements.
+AxesLabel | None or Automatic or list | AxesLabel is an option for graphics functions that specifies labels for axes. 
+PlotLabel | None | Defines the title of the plot.
+Epilog | {} | Epilog is an option for graphics functions that gives a list of graphics primitives to be rendered after the main part of the graphics is rendered.  
 
-First Header | Second Header
------------- | -------------
-Content from cell 1 | Content from cell 2
-Content in the first column | Content in the second column
-
-
-AxesType  "Star" or "Radar"  AxesType is an option for changing the style of the Axes. Star creates 
-
-
-|              |                    |a Star Plot, while "Radar" a Radar Plot.                               |
-
-|FrameTicks    | Automatic          |Frameticks can be defined by the user eg {0,2,4,6,8,10}                |
+##Examples
+    Needs["RadarChart`"]
+    RadarChart[{1, 2, 4, 5, 3}, 
+    ChartLegends -> {"Private Label Strawberry Juice"}, 
+    AxesLabel -> {"Ripe", "Green", "Candy", "Juicy", "Sulphur"}, 
+    PlotLabel -> Style["Sensory Map Strawberry Juice", Bold, Large], 
+    ImageSize -> Medium]
+    
+![Basic Example](http://i.stack.imgur.com/Opnwp.png)    
