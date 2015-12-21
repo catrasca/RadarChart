@@ -20,6 +20,8 @@ generates a radar plot to compare several series.
 generates a radar plot to compare several series.
 
 The following options can be given.
+
+
 First Header | Second Header
 ------------ | -------------
 Content from cell 1 | Content from cell 2
