@@ -11,10 +11,11 @@ Thanks to [halirutan](https://github.com/halirutan) for his guidance on setting 
 
 - [Detailed Usage](#-detailed-usage)
 - [Examples](#examples)
-- [Neat Examples](#-neat-examples)
-- [Installation](#-installation)
+- [Neat Examples](#neat-examples)
+- [Installation](#installation)
 	- [Automatic Installation for *Mathematica* 9 and above](#automatic-installation-for-mathematica-9-and-above)
-    - [Manual Installation](#manual-installation)
+	- [Manual Installation](#manual-installation)
+	
 ---
 
 ##![doc image](http://i.stack.imgur.com/erf8e.png) Detailed Usage
