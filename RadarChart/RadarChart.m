@@ -6,7 +6,7 @@
 (* :Author: Diego Zviovich*)
 (* :Date: 2015-12-13 *)
 
-(* :Package Version: 0.1 *)
+(* :Package Version: 0.2 *)
 (* :Mathematica Version: *)
 (* :Copyright: (c) 2015 Diego Zviovich *)
 (* :Keywords: *)
@@ -154,7 +154,9 @@ Options[RadarChart] = {PlotStyle->Automatic,
     Filling->None,
     ChartLegends->Automatic,
     AxesLabel->Automatic,
-    AxesType->"Radar"
+    AxesType->"Radar",
+    Mesh->None,
+    Joined->True
     }~Join~Developer`GraphicsOptions[];
 
 RadarChart[list:{{_?NumericQ,_?NumericQ,__?NumericQ}...},opts:OptionsPattern[]] :=
@@ -166,7 +168,9 @@ RadarChart[list:{{_?NumericQ,_?NumericQ,__?NumericQ}...},opts:OptionsPattern[]] 
                 axesLabel = OptionValue[AxesLabel],
                 plotRange = OptionValue[PlotRange],
                 frameTicks = OptionValue[FrameTicks],
-                axesType = OptionValue[AxesType]
+                axesType = OptionValue[AxesType],
+                mesh=OptionValue[Mesh],
+                joined=OptionValue[Joined]
                 },
         If[ Length@Dimensions@list!=2,
             Message[RadarChart::badDim];
@@ -192,7 +196,8 @@ RadarChart[list:{{_?NumericQ,_?NumericQ,__?NumericQ}...},opts:OptionsPattern[]] 
             polys = Join[{filling},Transpose[{plotStyle,Polygon[#]&/@vars}],{Opacity[1],Thick},Transpose[{plotStyle,Line[#]&/@vars}]];
             colors = CycleValues[plotStyle,nbrVars];
         ];
-        If[ plotRange===All,
+        If[Or[mesh===All,joined===False],polys=polys/.{Polygon->Point,Line->Point}];
+        If[ Or[plotRange===All,plotRange===Automatic],
             min = 0;
             max = Max@list;,
             {min,max} = plotRange;
@@ -203,7 +208,7 @@ RadarChart[list:{{_?NumericQ,_?NumericQ,__?NumericQ}...},opts:OptionsPattern[]] 
             ticks = Range[min,maxAxis,steps];
             If[ axesType=="Star",
                 axes = {GrayLevel[0.5],Arrow[Transpose[{ConstantArray[{0,0},length],
-                    Most@rearrangePoints[ConstantArray[1.15 maxAxis,length]]}]]};,
+                    Most@rearrangePoints[ConstantArray[1.15 maxAxis,length]]}]],Transparent,EdgeForm[{Thin,GrayLevel[0.5]}],RegularPolygon[{#,Pi/2},length]&/@Rest[ticks]};,
                 axes = {Transparent,EdgeForm[{Thin,GrayLevel[0.5]}],RegularPolygon[{#,Pi/2},length]&/@Rest[ticks]};
             ];
             tickLabels = Inset[Style[ToString[#]],{-maxAxis/25,#},Alignment->Right]&/@Rest@ticks;
